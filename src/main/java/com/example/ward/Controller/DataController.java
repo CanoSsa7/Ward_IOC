@@ -3,6 +3,7 @@ package com.example.ward.Controller;
 
 import com.example.ward.Entity.Nurse;
 import com.example.ward.Entity.Order;
+import com.example.ward.Entity.OrderDTO;
 import com.example.ward.Entity.PatientDTO;
 import com.example.ward.Service.NurseService;
 import com.example.ward.Service.OrderService;
@@ -53,7 +54,7 @@ public class DataController {
      */
     @RequestMapping("/order")
     Result getOrderInfo(@RequestParam(value = "id") Long patientId){
-        List<Order> orderList = orderService.getOrderByPatientId(patientId);
+        List<OrderDTO> orderList = orderService.getOrderByPatientId(patientId);
         return Result.success(orderList);
     }
 }

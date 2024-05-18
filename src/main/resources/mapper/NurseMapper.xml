@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.ward.Dao.NurseMapper">
+    <resultMap id="NurseResultMap" type="com.example.ward.Entity.Nurse">
+        <id column="nurse_id" property="nurseId" />
+        <result column="name" property="name" />
+        <result column="gender" property="gender" />
+        <result column="age" property="age" />
+        <result column="department" property="department" />
+    </resultMap>
+
+    <select id="getNursesByIds" resultMap="NurseResultMap">
+        SELECT nurse_id, name, gender, age, department
+        FROM nurses
+        WHERE nurse_id IN
+        <foreach item="id" collection="nurseIds" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>
